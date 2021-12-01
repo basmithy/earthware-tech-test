@@ -1,0 +1,74 @@
+﻿@inherits IndexBase
+@page "/"
+
+<PageTitle>Index</PageTitle>
+
+<h1>
+    Shopping Basket
+</h1>
+
+<div class="container">
+    <div class="row">
+        <div class="col-6">
+            <h3>
+                Add items to basket:
+            </h3>
+            <EditForm Model="@IndividualProduct" OnValidSubmit="@HandleValidSubmit">
+                <div>
+                    <p>
+                        Amount
+                    </p>
+                    <InputNumber @bind-Value="IndividualProduct.Amount"></InputNumber>
+                </div>
+                <div>
+                    <p>
+                        Name
+                    </p>
+                    <InputText @bind-Value="IndividualProduct.Name"></InputText>
+                </div>
+                <div>
+                    <p>
+                        Price
+                    </p>
+                    <InputNumber @bind-Value="IndividualProduct.Price"></InputNumber>
+                </div>
+                <div>
+                    <p>
+                        Tax Exempt?
+                    </p>
+                    <InputCheckbox @bind-Value="IndividualProduct.IsTaxExempt"></InputCheckbox>
+                </div>
+                <div>
+                    <p>
+                        Imported?
+                    </p>
+                    <InputCheckbox @bind-Value="IndividualProduct.IsImported"></InputCheckbox>
+                </div>
+
+                <button type="submit">Add Product</button>
+            </EditForm>
+        </div>
+        <div class="col-6">
+            <h3>
+                Basket:
+            </h3>
+            @foreach (var item in ShoppingBasket)
+            {
+                <p>
+                    @item.Amount @item.Name at £@item.Price
+                </p>
+            }
+            @if (ShoppingBasket.Any())
+            {
+                <button @onclick="GenerateReceipt">Generate Receipt</button>
+            }
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+

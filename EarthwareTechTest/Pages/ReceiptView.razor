@@ -1,0 +1,19 @@
+﻿@page "/receipt"
+@inherits ReceiptBase
+
+<h1>
+    Receipt
+</h1>
+
+@foreach (var item in receiptState.StateReceipt.Products)
+{
+    <p>
+        @item.Amount @item.Name : £@item.Price
+    </p>
+}
+<p>
+    Sales Taxes: £@receiptState.StateReceipt.TotalSalesTax
+</p>
+<p>
+    Total: £@receiptState.StateReceipt.TotalPrice
+</p>
